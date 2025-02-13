@@ -11,4 +11,33 @@ $(function (e) {
       $("#btnLogin").addClass("inactivecolor");
     }
   });
+
+  $(document).on("click", "#btnLogin", function () {
+    let un = $("#txtUsername").val();
+    let pw = $("#txtPassword").val();
+
+    if (un.trim() !== "" && pw.trim() !== "") {
+      $.ajax({
+        url: "ajaxhandler/loginAjax.php",
+        type: "POST",
+        data: {
+          user_name: un,
+          pass_word: pw,
+          action: "verifyUser",
+        },
+        dataType: "json",
+        beforeSend: () => {
+          alert("About to send an ajax request");
+        },
+        success: (e) => {
+          alert(JSON.stringify(e));
+        },
+        error: () => {
+          alert("Error");
+        },
+      });
+    } else {
+      alert("Please enter both username and password before continuing");
+    }
+  });
 });
