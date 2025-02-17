@@ -25,7 +25,7 @@ class faculty_details
         }
       } else {
         // user name does not exist
-        $rv = ["id" => -1, "status" => "USER NAME DOES NOT EXIST"];
+        $rv = ["id" => "-1", "status" => "USER NAME DOES NOT EXIST"];
       }
     } catch (PDOException $e) {
     }

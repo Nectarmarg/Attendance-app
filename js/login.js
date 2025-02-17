@@ -7,24 +7,29 @@ function tryLogin() {
     $.ajax({
       url: "ajaxhandler/loginAjax.php",
       type: "post",
-      dataType: "json",
       data: {
         user_name: un,
-        password: pw,
         action: "verifyUser",
       },
-
+      dataType: "json",
       beforeSend: () => {
-        alert("About to make an ajax call");
+        alert("About to send an ajax request");
       },
-
       success: (rv) => {
-        alert(JSON.stringify(rv));
+        // if status is OK or not
+
+        if (rv["status"] === "ALL OK") {
+          document.location.replace("attendance.php");
+        } else {
+          alert(rv["status"]);
+        }
       },
       error: () => {
-        alert("All bad");
+        alert("Something went wrong");
       },
     });
+  } else {
+    alert("Please enter both username and password before continuing");
   }
 }
 
@@ -41,7 +46,7 @@ $(function (e) {
     }
   });
 
-  $(document).on("click", "#btnLogin", function () {
+  $(document).on("click", "#btnLogin", function (e) {
     tryLogin();
   });
 });
