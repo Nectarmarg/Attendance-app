@@ -1,31 +1,29 @@
 //Do everything only when the page is loaded
+
 function tryLogin() {
+  // Get username and password
   let un = $("#txtUsername").val();
   let pw = $("#txtPassword").val();
 
+  // Check if they are empty and if not send ajax
   if (un.trim() !== "" && pw.trim() !== "") {
     $.ajax({
       url: "ajaxhandler/loginAjax.php",
-      type: "post",
+      type:"post",
       data: {
         user_name: un,
+        password: pw,
         action: "verifyUser",
       },
       dataType: "json",
       beforeSend: () => {
-        alert("About to send an ajax request");
+        alert("About to send ajax request");
       },
-      success: (rv) => {
-        // if status is OK or not
-
-        if (rv["status"] === "ALL OK") {
-          document.location.replace("attendance.php");
-        } else {
-          alert(rv["status"]);
-        }
+      success: (e) => {
+        alert(JSON.stringify(e));
       },
       error: () => {
-        alert("Something went wrong");
+        alert("Something went wrong!");
       },
     });
   } else {
@@ -46,7 +44,8 @@ $(function (e) {
     }
   });
 
-  $(document).on("click", "#btnLogin", function (e) {
+  // When the login button is pressed
+  $(document).on("click", "#btnLogin", () => {
     tryLogin();
   });
 });
