@@ -20,8 +20,11 @@ if (!empty($action) && $action == "verifyUser") {
     $fdo = new faculty_details();
     $rv = $fdo->verifyUser($dbo, $un, $pw);
 
+    // if data exist get the current user id
     if ($rv["status"] == "ALL OK") {
         session_start();
         $_SESSION['current_user'] = $rv['id'];
     }
+
+    echo json_encode($rv);
 }

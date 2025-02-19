@@ -9,7 +9,7 @@ function tryLogin() {
   if (un.trim() !== "" && pw.trim() !== "") {
     $.ajax({
       url: "ajaxhandler/loginAjax.php",
-      type:"post",
+      type: "post",
       data: {
         user_name: un,
         password: pw,
@@ -19,8 +19,12 @@ function tryLogin() {
       beforeSend: () => {
         alert("About to send ajax request");
       },
-      success: (e) => {
-        alert(JSON.stringify(e));
+      success: (rv) => {
+        if (rv["status"] == "ALL OK") {
+          document.location.href = "attendance.php";
+        } else {
+          alert(JSON.stringify(rv));
+        }
       },
       error: () => {
         alert("Something went wrong!");
