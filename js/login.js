@@ -17,13 +17,15 @@ function tryLogin() {
       },
       dataType: "json",
       beforeSend: () => {
-        alert("About to send ajax request");
+        $("#diverror").removeClass("applyerrordiv");
+        $(".applyerrordiv").text("");
       },
       success: (rv) => {
         if (rv["status"] == "ALL OK") {
           document.location.href = "attendance.php";
         } else {
-          alert(JSON.stringify(rv));
+          $("#diverror").addClass("applyerrordiv");
+          $(".applyerrordiv").text(rv["status"]);
         }
       },
       error: () => {
@@ -37,6 +39,9 @@ function tryLogin() {
 
 $(function (e) {
   $(document).on("keyup", "input", function (e) {
+    $("#diverror").removeClass("applyerrordiv");
+    $(".applyerrordiv").text("");
+
     let un = $("#txtUsername").val();
     let pw = $("#txtPassword").val();
     if (un.trim() !== "" && pw.trim() !== "") {

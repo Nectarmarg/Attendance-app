@@ -12,7 +12,7 @@
 
   <div class="loginform">
 
-    <div class="inputgroup">
+    <div class="inputgroup topmarginlarge">
       <input type="text" id="txtUsername" required>
       <label for="txtUsername" id="lblUsername"> USER NAME</label>
     </div>
@@ -23,6 +23,10 @@
     </div>
     <div class="divcallforaction topmarginlarge">
       <button class="btnlogin inactivecolor" id="btnLogin">LOGIN</button>
+    </div>
+
+    <div class="diverror topmarginlarge" id="diverror">
+      <label for="" class="errormessage" id="errormessage">ERROR GOES HERE</label>
     </div>
 
   </div>

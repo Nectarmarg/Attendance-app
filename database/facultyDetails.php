@@ -23,7 +23,7 @@ class faculty_details
                     $rv = ["id" => $result['id'], "status" => "ALL OK"];
                 } else {
                     // Incorrect password
-                    $rv = ["id" => $result['id'], "status" => "Wrong password"];
+                    $rv = ["id" => $result['id'], "status" => "WRONG PASSWORD"];
                 }
             } else {
                 // user name does not exist
