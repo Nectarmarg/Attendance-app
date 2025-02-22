@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login Page</title>
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/loader.css">
 </head>
 
 <body>
@@ -29,6 +30,9 @@
       <label for="" class="errormessage" id="errormessage">ERROR GOES HERE</label>
     </div>
 
+  </div>
+  <div class="lockscreen" id="lockscreen">
+    <div class="spinner" id="spinner"></div>
   </div>
 
   <script src="js/jquery.js"></script>

@@ -128,7 +128,8 @@ body {
   background-color: rgb(50, 168, 247);
 
 }
-.diverror{
+
+.diverror {
   background-color: transparent;
   color: white;
   height: 45px;
@@ -138,9 +139,71 @@ body {
   align-items: center;
   visibility: hidden;
   opacity: 0;
+  transition: all 1s;
+  letter-spacing: 1px;
 }
-.applyerrordiv{
+
+.applyerrordiv {
   visibility: visible;
   opacity: 1;
-  animation: falldown 2s linear;
+  animation: falldown 1s linear;
+}
+
+@keyframes falldown {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  49% {
+    transform: translateY(0px);
+    opacity: 1;
+    letter-spacing: 1px;
+
+  }
+
+  50% {
+    transform: translateY(0px);
+    opacity: 1;
+    letter-spacing: 3px;
+
+  }
+
+  55% {
+    transform: translateY(0px);
+    opacity: 1;
+    letter-spacing: 1px;
+
+  }
+
+  60% {
+    transform: translateY(-50px);
+    opacity: 1;
+
+  }
+
+  80% {
+    transform: translateY(0px);
+    opacity: 1;
+
+  }
+
+  85% {
+    transform: translateY(-10px);
+    opacity: 1;
+
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+
+  }
+
+
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
 }

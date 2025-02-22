@@ -17,10 +17,12 @@ function tryLogin() {
       },
       dataType: "json",
       beforeSend: () => {
+        // $(".applyerrordiv").text("");
         $("#diverror").removeClass("applyerrordiv");
-        $(".applyerrordiv").text("");
+        $("#lockscreen").addClass("applylockscreen");
       },
       success: (rv) => {
+        $("#lockscreen").removeClass("applylockscreen");
         if (rv["status"] == "ALL OK") {
           document.location.href = "attendance.php";
         } else {
