@@ -34,9 +34,77 @@ if (!isset($_SESSION['current_user'])) {
                 </select>
             </div>
         </div>
-        <div class="classlist-area">1</div>
-        <div class="classdetails-area">1</div>
-        <div class="studentlist-area">1</div>
+        <div class="classlist-area">
+            <div class="classcard">CS101</div>
+            <div class="classcard">CS101</div>
+            <div class="classcard">CS101</div>
+            <div class="classcard">CS101</div>
+            <div class="classcard">CS101</div>
+        </div>
+        <div class="classdetails-area">
+            <div class="classdetails">
+                <div class="code-area">CS101</div>
+                <div class="title-area">INTRODUCTION TO SCIENTIFIC COMPUTING</div>
+                <div class="ondate-area">
+                    <input type="date">
+                </div>
+            </div>
+        </div>
+        <div class="studentlist-area">
+            <div class="studentlist">
+                <label for="">STUDENT LIST</label>
+            </div>
+
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="studentdetails">
+                <div class="slno-area">001</div>
+                <div class="rollno-area">CSB21001</div>
+                <div class="name-area">PRAKASH KUMAR CHAUHAN</div>
+                <div class="checkbox-area">
+                    <input type="checkbox">
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script src="js/jquery.js"></script>
