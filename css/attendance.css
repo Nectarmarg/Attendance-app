@@ -4,6 +4,7 @@
   --fontsize: 1rem;
   --gap: .3rem;
   --padding: .4rem;
+  transition: all 600ms;
 }
 
 body {
@@ -25,6 +26,13 @@ body {
   ;
 }
 
+.logout {
+  background-color: hsl(271, 76%, 40%);
+  padding: 10px 10px;
+  cursor: pointer;
+  color: white;
+}
+
 .header-area {
   grid-area: header-area;
   display: grid;
@@ -32,6 +40,7 @@ body {
   grid-template-areas: "logo-area logout-area";
   gap: var(--gap);
   padding: var(--padding);
+  border-bottom: solid 1px pink;
 }
 
 .logo-area {
@@ -56,6 +65,7 @@ body {
     "dropdown-area";
   gap: var(--gap);
   padding: var(--padding);
+  border-bottom: solid 1px pink;
 
 }
 
@@ -80,12 +90,14 @@ body {
   padding: var(--padding);
   justify-content: center;
   align-items: center;
+  border-bottom: solid 1px pink;
 }
 
 .classdetails-area {
   grid-area: classdetails-area;
   gap: var(--gap);
   padding: var(--padding);
+  border-bottom: solid 1px pink;
 }
 
 .studentlist-area {
@@ -97,6 +109,7 @@ body {
 
   gap: var(--gap);
   padding: var(--padding);
+  border-bottom: solid 1px pink;
 }
 
 .btnlogout {
@@ -106,6 +119,10 @@ body {
   color: white;
 }
 
+.logo {
+  font-size: calc(var(--fontsize)*2);
+}
+
 .ddlclass {
   width: 100%;
   outline: none;
@@ -113,8 +130,8 @@ body {
 
 .classcard {
   font-size: calc(var(--fontsize) * 1);
-  width: 6em;
-  height: 6em;
+  width: 4.5em;
+  height: 4.5em;
   color: white;
   display: flex;
   justify-content: center;
@@ -188,6 +205,7 @@ body {
   font-size: var(--fontsize);
   padding-top: calc(var(--padding) * 1.5);
   padding-bottom: calc(var(--padding) * 1.5);
+  border-bottom: solid 1px pink;
 }
 
 .checkbox-area>input {

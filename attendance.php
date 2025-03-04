@@ -20,7 +20,7 @@ if (!isset($_SESSION['current_user'])) {
     <div class="page">
         <div class="header-area">
             <div class="logo-area">
-                <h1 class="logo">ATTENDANCE APP</h1>
+                <h2 class="logo">ATTENDANCE APP</h2>
             </div>
             <div class="logout-area"><button class="logout">LOGOUT</button></div>
         </div>
