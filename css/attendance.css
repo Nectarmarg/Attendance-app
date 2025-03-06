@@ -1,7 +1,8 @@
 * {
   margin: 0;
   padding: 0px;
-  --fontsize: 1rem;
+  --fontsize: .8rem;
+  /*for screen less than 600 */
   --gap: .3rem;
   --padding: .4rem;
   transition: all 600ms;
@@ -24,6 +25,20 @@ body {
     "classdetails-area"
     "studentlist-area"
   ;
+  padding-top: calc(var(--padding)*8);
+  padding-bottom: calc(var(--padding)*8);
+  border-bottom: solid black 1px;
+  animation: fadein 700ms linear;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .logout {
@@ -145,6 +160,50 @@ body {
 
 }
 
+.classcard:hover {
+  background-color: rgb(226, 43, 174);
+  color: white;
+  animation: tilt 500ms linear;
+}
+
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(-30deg);
+  }
+
+  30% {
+    transform: rotate(0deg);
+  }
+
+  45% {
+    transform: rotate(25deg);
+  }
+
+  60% {
+    transform: rotate(0deg);
+  }
+
+  70% {
+    transform: rotate(-20deg);
+  }
+
+  80% {
+    transform: rotate(0deg);
+  }
+
+  90% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .classdetails {
   display: grid;
 
@@ -210,6 +269,12 @@ body {
   padding-top: calc(var(--padding) * 1.5);
   padding-bottom: calc(var(--padding) * 1.5);
   border-bottom: solid 1px pink;
+  transition: all 300ms;
+}
+
+.studentdetails:hover {
+  background-color: rgb(0, 106, 255);
+  color: white;
 }
 
 .checkbox-area>input {
@@ -242,8 +307,26 @@ body {
   align-items: center;
 }
 
-/* if the screen size is larger than 600px */
 @media only screen and (min-width:600px) {
+
+
+  * {
+
+    --fontsize: .9rem;
+    /*for screen less than 767>600 */
+
+  }
+}
+
+/* if the screen size is larger than 600px */
+@media only screen and (min-width:767px) {
+  * {
+
+    --fontsize: 1rem;
+    /*for screen less than > 767 */
+
+  }
+
   .session-area {
 
     grid-template-columns: 1fr 1fr;
@@ -279,5 +362,11 @@ body {
     grid-template-areas:
       "slno-area rollno-area name-area checkbox-area";
     /*  */
+  }
+
+  .studentdetails>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
