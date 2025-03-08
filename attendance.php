@@ -28,9 +28,9 @@ if (!isset($_SESSION['current_user'])) {
             <div class="label-area"><label for="">SESSION</label></div>
             <div class="dropdown-area">
                 <select name="" id="" class="ddlclass">
-                    <option value="">SELECT ONE</option>
+                    <!-- <option value="">SELECT ONE</option>
                     <option value="">2023 AUTUMN</option>
-                    <option value="">2023 SPRING</option>
+                    <option value="">2023 SPRING</option> -->
                 </select>
             </div>
         </div>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['current_user'])) {
     </div>
 
     <script src="js/jquery.js"></script>
-    <script src="js/logout.js"></script>
+    <script src="js/attendance.js"></script>
 </body>
 
 </html>
