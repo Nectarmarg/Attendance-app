@@ -1,5 +1,10 @@
 function getSessionHTML(rv) {
   let x = ``;
+  x = `<option value="">SELECT ONE</option>`;
+  for (let i = 0; i < rv.length; i++) {
+    let cs = rv[i];
+    x = x + `<option>${cs["year"] + " " + cs["term"]}</option>`;
+  }
   return x;
 }
 
@@ -15,7 +20,8 @@ function loadSessions() {
     success: (rv) => {
       // alert(JSON.stringify(rv));
       // lets create the HTML from rv dynamically
-      getSessionHTML(rv);
+      let element = getSessionHTML(rv);
+      $("#ddlclass").html(element);
     },
   });
 }
@@ -43,4 +49,7 @@ $(function (e) {
     });
   });
   loadSessions();
+  $(document).on("change", "#ddlclass", (e) => {
+    alert("Hello");
+  });
 });

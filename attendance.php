@@ -27,7 +27,7 @@ if (!isset($_SESSION['current_user'])) {
         <div class="session-area">
             <div class="label-area"><label for="">SESSION</label></div>
             <div class="dropdown-area">
-                <select name="" id="" class="ddlclass">
+                <select name="" id="ddlclass" class="ddlclass">
                     <!-- <option value="">SELECT ONE</option>
                     <option value="">2023 AUTUMN</option>
                     <option value="">2023 SPRING</option> -->
@@ -35,11 +35,11 @@ if (!isset($_SESSION['current_user'])) {
             </div>
         </div>
         <div class="classlist-area">
+            <!-- <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
-            <div class="classcard">CS101</div>
-            <div class="classcard">CS101</div>
+            <div class="classcard">CS101</div> -->
         </div>
         <div class="classdetails-area">
             <div class="classdetails">
