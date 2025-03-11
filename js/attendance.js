@@ -1,9 +1,10 @@
 function getSessionHTML(rv) {
   let x = ``;
-  x = `<option value="">SELECT ONE</option>`;
+  x = `<option value=-1>SELECT ONE</option>`;
   for (let i = 0; i < rv.length; i++) {
     let cs = rv[i];
-    x = x + `<option>${cs["year"] + " " + cs["term"]}</option>`;
+    x =
+      x + `<option value=${cs["id"]}>${cs["year"] + " " + cs["term"]}</option>`;
   }
   return x;
 }
@@ -23,6 +24,24 @@ function loadSessions() {
       let element = getSessionHTML(rv);
       $("#ddlclass").html(element);
     },
+  });
+}
+function fetchFacultyCourses(facid, sessionid) {
+  // get all the courses taken by the loged in faculty
+  // for the selected session
+  // from DB
+  // by an ajax call
+
+  $.ajax({
+    url: "ajaxhandler/attendanceAJAX.php",
+    type: "POST",
+    dataType: "json",
+    data: { facid: facid, sessionid: sessionid, action: "getFacultyCourses" },
+    beforeSend: () => {},
+    success: (rv) => {
+      alert(JSON.stringify(rv));
+    },
+    error: () => {},
   });
 }
 
@@ -50,6 +69,11 @@ $(function (e) {
   });
   loadSessions();
   $(document).on("change", "#ddlclass", (e) => {
-    alert("Hello");
+    let si = $("#ddlclass").val();
+    if (si != 1) {
+      let sessionid = si;
+      let facid = $("#hiddenFacId").val();
+      fetchFacultyCourses(facid, sessionid);
+    }
   });
 });

@@ -1,8 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['current_user'])) {
-    header("Location: login.php");
-    exit();
+    $facid = $_SESSION['current_user'];
 }
 ?>
 
@@ -106,7 +105,7 @@ if (!isset($_SESSION['current_user'])) {
 
         </div>
     </div>
-
+    <input type="hidden" name="" id="hidden" value="<?php echo $facid ?>">
     <script src="js/jquery.js"></script>
     <script src="js/attendance.js"></script>
 </body>

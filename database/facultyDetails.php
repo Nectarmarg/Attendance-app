@@ -33,4 +33,10 @@ class faculty_details
         }
         return $rv;
     }
+    public function getCoursesInASession($dbo, $sessionid)
+    {
+        $rv = [];
+        $c = "select cd.id, cd.code, cd.title from course_allotment as ca, course_details as cd where ca.course_id=cd.id and faculty_id=:facid and session_id=:sessionid ";
+        return $rv;
+    }
 }
