@@ -115,6 +115,7 @@ body {
   gap: var(--gap);
   padding: var(--padding);
   border-bottom: solid 1px pink;
+  text-transform: uppercase;
 }
 
 .studentlist-area {

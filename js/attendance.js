@@ -26,6 +26,18 @@ function loadSessions() {
     },
   });
 }
+function getCourseCardHTML(classlist) {
+  let x = ``;
+
+  let i = 0;
+  for (i = 0; i < classlist.length; i++) {
+    let cs = classlist[i];
+    x += `<div class="classcard" data-code='${JSON.stringify(cs)}'>${
+      cs["code"]
+    }</div>`;
+  }
+  return x;
+}
 function fetchFacultyCourses(facid, sessionid) {
   // get all the courses taken by the loged in faculty
   // for the selected session
@@ -39,9 +51,32 @@ function fetchFacultyCourses(facid, sessionid) {
     data: { facid: facid, sessionid: sessionid, action: "getFacultyCourses" },
     beforeSend: () => {},
     success: (rv) => {
-      alert(JSON.stringify(rv));
+      // alert(JSON.stringify(rv));
+      let x = getCourseCardHTML(rv);
+      $("#classlistarea").html(x);
     },
     error: () => {},
+  });
+}
+function getClassdetailsAreaHTML(classobject) {
+  let x = `<div class="classdetails">
+                <div class="code-area">${classobject["code"]}</div>
+                <div class="title-area">${classobject["title"]}</div>
+                <div class="ondate-area">
+                    <input type="date">
+                </div>
+            </div> `;
+  return x;
+}
+function fetchStudentList(sessionid, classid) {
+  $.ajax({
+    url: "ajaxhandler/attendanceAJAX.php",
+    type: "POST",
+    datatype: "json",
+    data: { action: "getStudentList", sessionid: sessionid, classid: classid },
+    beforeSend: (e) => {},
+    error: (e) => {},
+    success: (e) => {},
   });
 }
 
@@ -70,10 +105,23 @@ $(function (e) {
   loadSessions();
   $(document).on("change", "#ddlclass", (e) => {
     let si = $("#ddlclass").val();
-    if (si != 1) {
+    if (si != -1) {
       let sessionid = si;
       let facid = $("#hiddenFacId").val();
       fetchFacultyCourses(facid, sessionid);
+    }
+  });
+  $(document).on("click", ".classcard", (e) => {
+    let s = $(e.currentTarget).data("code");
+    // alert(JSON.stringify(s));
+    let x = getClassdetailsAreaHTML(s);
+    $("#classdetailsarea").html(x);
+    // now fill the studentlist
+    // for session and course
+    let sessionid = $("#ddlsession").val();
+    let classid = classobject["id"];
+    if (sessionid != -1) {
+      fetchStudentList(sessionid, classid);
     }
   });
 });

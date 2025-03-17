@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['current_user'])) {
+if (isset($_SESSION['current_user'])) {
     $facid = $_SESSION['current_user'];
 }
 ?>
@@ -33,21 +33,21 @@ if (!isset($_SESSION['current_user'])) {
                 </select>
             </div>
         </div>
-        <div class="classlist-area">
+        <div class="classlist-area" id="classlistarea">
             <!-- <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
             <div class="classcard">CS101</div>
             <div class="classcard">CS101</div> -->
         </div>
-        <div class="classdetails-area">
-            <div class="classdetails">
+        <div class="classdetails-area" id="classdetailsarea">
+            <!-- <div class="classdetails">
                 <div class="code-area">CS101</div>
                 <div class="title-area">INTRODUCTION TO SCIENTIFIC COMPUTING</div>
                 <div class="ondate-area">
                     <input type="date">
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="studentlist-area">
             <div class="studentlist">
@@ -105,7 +105,7 @@ if (!isset($_SESSION['current_user'])) {
 
         </div>
     </div>
-    <input type="hidden" name="" id="hidden" value="<?php echo $facid ?>">
+    <input type="hidden" name="" id="hiddenFacId" value="<?php echo $facid ?>">
     <script src="js/jquery.js"></script>
     <script src="js/attendance.js"></script>
 </body>

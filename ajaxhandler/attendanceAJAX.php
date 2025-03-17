@@ -3,8 +3,8 @@
   require_once $path . '/attendanceapp/database/database.php';
   require_once $path . '/attendanceapp/database/sessionDetails.php';
   require_once $path . '/attendanceapp/database/facultyDetails.php';
+
   if (isset($_POST['action']) && $_POST['action'] === "getSession") {
-    $action = $_POST['action'];
 
     $dbo = new Database();
     $sobj = new SessionDetails();
@@ -20,6 +20,6 @@
     $dbo = new Database();
     $fo = new faculty_details();
     $rv = $fo->getCoursesInASession($dbo, $sessionid, $facid);
-    $rv = [];
+
     echo json_encode($rv);
   }
