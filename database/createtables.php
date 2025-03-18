@@ -12,7 +12,7 @@ function clearTable($dbo, $tabName)
   }
 }
 $dbo = new Database();
-$c = "drop table if exists student_details; create table student_details
+$c = "create table student_details
 (
     id int auto_increment primary key,
     roll_no varchar(20) unique,
@@ -42,7 +42,7 @@ try {
 }
 
 
-$c = "drop table if exists faculty_details;create table faculty_details
+$c = "create table faculty_details
 (
     id int auto_increment primary key,
     user_name varchar(20) unique,
@@ -58,7 +58,7 @@ try {
 }
 
 
-$c = "drop table if exists session_details;create table session_details
+$c = "create table session_details
 (
     id int auto_increment primary key,
     year int,
@@ -75,7 +75,7 @@ try {
 
 
 
-$c = "drop table if exists course_registration;create table course_registration
+$c = "create table course_registration
 (
     student_id int,
     course_id int,
@@ -90,7 +90,7 @@ try {
   echo ("<br>course_registration not created");
 }
 
-$c = "drop table if exists course_allotment;create table course_allotment
+$c = "create table course_allotment
 (
     faculty_id int,
     course_id int,
@@ -105,7 +105,7 @@ try {
   echo ("<br>course_allotment not created");
 }
 
-$c = "drop table if exists attendance_details;create table attendance_details
+$c = "create table attendance_details
 (
     faculty_id int,
     course_id int,
@@ -126,31 +126,31 @@ try {
 $c = "insert into student_details
 (id,roll_no,name)
 values
-(1,'CSB21001','Emily Johnson'),
-(2,'CSB21002','Michael Smith'),
-(3,'CSB21003','Sarah Martinez'),
-(4,'CSB21004','David Brown'),
-(5,'CSB21005','Olivia Williams'),
-(6,'CSB21006','Christopher Davis'),
-(7,'CSB21007','Sophia Wilson'),
-(8,'CSB21008','Ethan Anderson'),
-(9,'CSB21009','Emma Miller'),
-(10,'CSB21010','James Jones'),
-(11,'CSB21011','Ava Taylor'),
-(12,'CSB21012','Daniel Thomas'),
-(13,'CSM21001','Mia Garcia'),
-(14,'CSM21002','William White'),
-(15,'CSM21003','Chloe Martin'),
-(16,'CSM21004','Benjamin Clark'),
-(17,'CSM21005','Isabella Hall'),
-(18,'CSM21006','Alexander Lee'),
-(19,'CSM21007','Grace Lewis'),
-(20,'CSM21008','Samuel Turner'),
-(21,'CSM21009','Natalie Harris'),
-(22,'CSM21010','Caleb Baker'),
-(23,'CSM21011','Lily Reed'),
-(24,'CSM21012','Logan Murphy')
-";
+  (1,'CSB21001','BHASKAR JYOTI SUNGHA'),
+  (2,'CSB21002','PALLABI BORA'),
+  (3,'CSB21003','PRERONA SAIKIA'),
+  (4,'CSB21004','SWAPNIL DEB'),
+  (5,'CSB21005','AONEK AMARTYA KHYON HAZARIKA'),
+  (6,'CSB21006','ANTARIP LAHKAR'),
+  (7,'CSB21007','GURVINDRA SINGH'),
+  (8,'CSB21008','DEBANGANA SAHA'),
+  (9,'CSB21009','PRANAY BHARAT GAIKWAD'),
+  (10,'CSB21010','ROMIT KUMAR'),
+  (11,'CSB21011','TAMANNA NEGER'),
+  (12,'CSB21012','ARNAB CHAKRABORTY'),
+
+  (13,'CSM21001','UTTARA SAHA'),
+  (14,'CSM21002','PROBAL DEEP SAIKIA'),
+  (15,'CSM21003','SUBHROJIT SAIKIA'),
+  (16,'CSM21004','GURLEEN KAUR'),
+  (17,'CSM21005','RACHNA HARLALKA'),
+  (18,'CSM21006','CHITRANKANA BHOWMIK'),
+  (19,'CSM21007','HRITTIK BARUAH'),
+  (20,'CSM21008','PRAGYANUR SAIKIA'),
+  (21,'CSM21009','BIKRAM UPADHYAYA'),
+  (22,'CSM21010','SHABBIR AHMAD'),
+  (23,'CSM21011','ARNAB BISWAS'),
+  (24,'CSM21012','NAROTTAM GOGOI')";
 
 $s = $dbo->conn->prepare($c);
 try {
