@@ -3,6 +3,7 @@
   require_once $path . '/attendanceapp/database/database.php';
   require_once $path . '/attendanceapp/database/sessionDetails.php';
   require_once $path . '/attendanceapp/database/facultyDetails.php';
+  require_once $path . '/attendanceapp/database/courseRegistrationDetails.php';
 
   if (isset($_POST['action']) && $_POST['action'] === "getSession") {
 
@@ -20,6 +21,18 @@
     $dbo = new Database();
     $fo = new faculty_details();
     $rv = $fo->getCoursesInASession($dbo, $sessionid, $facid);
+
+    echo json_encode($rv);
+  }
+
+  if (isset($_POST['action']) && $_POST['action'] === "getStudentList") {
+    // fetch the courses taken by fac in sess
+
+    $classid = $_POST['classid'];
+    $sessionid = $_POST['sessionid'];
+    $dbo = new Database();
+    $crgo = new CourseRegistrationDetails();
+    $rv = $crgo->getRegisteredStudents($dbo, $sessionid, $classid);
 
     echo json_encode($rv);
   }

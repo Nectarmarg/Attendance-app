@@ -74,9 +74,15 @@ function fetchStudentList(sessionid, classid) {
     type: "POST",
     datatype: "json",
     data: { action: "getStudentList", sessionid: sessionid, classid: classid },
-    beforeSend: (e) => {},
-    error: (e) => {},
-    success: (e) => {},
+    beforeSend: (e) => {
+      alert("BeforeSend");
+    },
+    error: (e) => {
+      alert("Error");
+    },
+    success: (rv) => {
+      alert(JSON.stringify(rv));
+    },
   });
 }
 
@@ -118,7 +124,7 @@ $(function (e) {
     $("#classdetailsarea").html(x);
     // now fill the studentlist
     // for session and course
-    let sessionid = $("#ddlsession").val();
+    let sessionid = $("#ddlclass").val();
     let classid = classobject["id"];
     if (sessionid != -1) {
       fetchStudentList(sessionid, classid);
