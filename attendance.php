@@ -49,8 +49,8 @@ if (isset($_SESSION['current_user'])) {
                 </div>
             </div> -->
         </div>
-        <div class="studentlist-area">
-            <div class="studentlist">
+        <div class="studentlist-area" id="studentlistarea">
+            <!-- <div class="studentlist">
                 <label for="">STUDENT LIST</label>
             </div>
 
@@ -62,6 +62,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div>
+
             <div class="studentdetails">
                 <div class="slno-area">001</div>
                 <div class="rollno-area">CSB21001</div>
@@ -70,6 +71,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div>
+
             <div class="studentdetails">
                 <div class="slno-area">001</div>
                 <div class="rollno-area">CSB21001</div>
@@ -78,6 +80,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div>
+
             <div class="studentdetails">
                 <div class="slno-area">001</div>
                 <div class="rollno-area">CSB21001</div>
@@ -86,6 +89,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div>
+
             <div class="studentdetails">
                 <div class="slno-area">001</div>
                 <div class="rollno-area">CSB21001</div>
@@ -94,6 +98,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div>
+
             <div class="studentdetails">
                 <div class="slno-area">001</div>
                 <div class="rollno-area">CSB21001</div>
@@ -101,7 +106,7 @@ if (isset($_SESSION['current_user'])) {
                 <div class="checkbox-area">
                     <input type="checkbox">
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>

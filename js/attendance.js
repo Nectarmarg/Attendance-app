@@ -26,6 +26,46 @@ function loadSessions() {
     },
   });
 }
+
+function getStudentListHTML(studentList) {
+  let x = `<div class="studentlist">
+                <label for="">STUDENT LIST</label>
+            </div>`;
+
+  let i = 0;
+
+  for (i = 0; i < studentList.length; i++) {
+    let cs = studentList[i];
+    x =
+      x +
+      `<div class="studentdetails">
+            <div class="slno-area">${i + 1}</div>
+            <div class="rollno-area">${cs["roll_no"]}</div>
+            <div class="name-area">${cs["name"]}</div>
+            <div class="checkbox-area">
+                <input type="checkbox" class='cbpresent'>
+            </div>
+        </div>
+
+       `;
+  }
+
+  // let i = 0;
+  // for (i = 0; i < studentList.length; i++) {
+  //   let cs = studentList[i];
+  //   x += `
+  //           <div class="studentdetails">
+  //               <div class="slno-area">${i + 1}</div>
+  //               <div class="rollno-area">${cs["roll_no"]}</div>
+  //               <div class="name-area">${cs["name"]}</div>
+  //               <div class="checkbox-area">
+  //                   <input type="checkbox">
+  //               </div>
+  //           </div>
+  //         `;
+  // }
+  return x;
+}
 function getCourseCardHTML(classlist) {
   let x = ``;
 
@@ -59,29 +99,45 @@ function fetchFacultyCourses(facid, sessionid) {
   });
 }
 function getClassdetailsAreaHTML(classobject) {
+  let dateobj = new Date();
+  let year = dateobj.getFullYear();
+  let month = dateobj.getMonth() + 1;
+  let day = dateobj.getDate();
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  let ondate = `${year}-${month}-${day}`;
+
   let x = `<div class="classdetails">
-                <div class="code-area">${classobject["code"]}</div>
-                <div class="title-area">${classobject["title"]}</div>
-                <div class="ondate-area">
-                    <input type="date">
-                </div>
-            </div> `;
+    <div class="code-area">${classobject["code"]}</div>
+    <div class="title-area">${classobject["title"]}</div>
+        <div class="ondate-area">
+          <input type="date" value=${ondate}>
+        </div>
+  </div>
+
+          `;
   return x;
 }
 function fetchStudentList(sessionid, classid) {
   $.ajax({
     url: "ajaxhandler/attendanceAJAX.php",
     type: "POST",
-    datatype: "json",
+    dataType: "json",
     data: { action: "getStudentList", sessionid: sessionid, classid: classid },
-    beforeSend: (e) => {
-      alert("BeforeSend");
-    },
+    beforeSend: (e) => {},
     error: (e) => {
       alert("Error");
     },
     success: (rv) => {
-      alert(JSON.stringify(rv));
+      // alert(JSON.stringify(rv));
+      getStudentListHTML(rv);
+      $("#studentlistarea").html(getStudentListHTML(rv));
     },
   });
 }
@@ -118,9 +174,9 @@ $(function (e) {
     }
   });
   $(document).on("click", ".classcard", (e) => {
-    let s = $(e.currentTarget).data("code");
-    // alert(JSON.stringify(s));
-    let x = getClassdetailsAreaHTML(s);
+    let classobject = $(e.currentTarget).data("code");
+    // alert(JSON.stringify(classobject));
+    let x = getClassdetailsAreaHTML(classobject);
     $("#classdetailsarea").html(x);
     // now fill the studentlist
     // for session and course
@@ -129,5 +185,10 @@ $(function (e) {
     if (sessionid != -1) {
       fetchStudentList(sessionid, classid);
     }
+  });
+  $(document).on("click", ".cbpresent", (e) => {
+    // get the check state
+    let isPresent=e.currentTarget.checked;
+    alert(isPresent)
   });
 });
