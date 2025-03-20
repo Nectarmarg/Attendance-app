@@ -111,6 +111,7 @@ if (isset($_SESSION['current_user'])) {
         </div>
     </div>
     <input type="hidden" name="" id="hiddenFacId" value="<?php echo $facid ?>">
+    <input type="hidden" name="" id="hiddenSelectedCourseID" value="<?php echo -1 ?>">
     <script src="js/jquery.js"></script>
     <script src="js/attendance.js"></script>
 </body>
