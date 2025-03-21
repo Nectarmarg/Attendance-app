@@ -51,6 +51,6 @@
     $status = $_POST['ispresent'];
     $dbo = new Database();
     $ado = new attendanceDetails();
-    $rv = $ado->saveAttendance($dbo, $sessionid, $courseid, $facultyid, $studentid, $ondate, 1);
+    $rv = $ado->saveAttendance($dbo, $sessionid, $courseid, $facultyid, $studentid, $ondate, $status);
     echo json_encode($rv);
   }

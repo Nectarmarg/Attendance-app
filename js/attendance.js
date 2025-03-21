@@ -156,7 +156,9 @@ function saveAttendance(
   $.ajax({
     url: "ajaxhandler/attendanceAJAX.php",
     type: "POST",
+    
     dataType: "json",
+    
     data: {
       studentid: studentid,
       courseid: courseid,
@@ -166,12 +168,15 @@ function saveAttendance(
       ispresent: ispresent,
       action: "saveAttendance",
     },
+
     beforeSend: function (e) {},
+
     error: function (e) {
       alert("OOPS! Something went wrong!");
     },
+
     success: function (rv) {
-      alert(JSON.stringify(rv));
+      // alert(JSON.stringify(rv));
     },
   });
 }
