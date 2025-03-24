@@ -32,4 +32,21 @@ class attendanceDetails
         }
         return $rv;
     }
+    public function getPresentListOfAClassByAFacOnADate($dbo, $session, $course, $fac, $ondate)
+    {
+        $c = "select * from attendance_details where session_id=:session_id 
+        and course_id=:course_id 
+        and faculty_id=:faculty_id 
+        and on_date=:on_date 
+        and status='YES'";
+        $s = $dbo->conn->prepare($c);
+        try {
+
+            $s->execute([":session_id" => $session, ":course_id" => $course, ":faculty_id" => $fac, ":on_date" => $ondate]);
+            $rv = $s->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            return [-1];
+        }
+        return $rv;
+    }
 }

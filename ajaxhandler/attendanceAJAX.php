@@ -34,11 +34,32 @@
 
     $classid = $_POST['classid'];
     $sessionid = $_POST['sessionid'];
-    $dbo = new Database();
-    $crgo = new CourseRegistrationDetails();
-    $rv = $crgo->getRegisteredStudents($dbo, $sessionid, $classid);
+    $facid = $_POST['facid'];
+    $ondate = $_POST['ondate'];
 
-    echo json_encode($rv);
+    $dbo = new Database();
+
+    $crgo = new CourseRegistrationDetails();
+    $allStudents = $crgo->getRegisteredStudents($dbo, $sessionid, $classid);
+
+
+    $ado = new attendanceDetails();
+    $presentStudents = $ado->getPresentListOfAClassByAFacOnADate($dbo, $sessionid, $classid, $facid, $ondate);
+
+    // lets iterate over allStudents and mark the presentStudents
+
+    for ($i = 0; $i < count($allStudents); $i++) {
+      $allStudents[$i]['isPresent'] = "NO";
+
+      for ($j = 0; $j < count($presentStudents); $j++) {
+        if ($allStudents[$i]['id'] === $presentStudents[$j]['student_id']) {
+          $allStudents[$i]['isPresent'] = "YES";
+          break;
+        }
+      }
+    }
+
+    echo json_encode($allStudents);
   }
 
 

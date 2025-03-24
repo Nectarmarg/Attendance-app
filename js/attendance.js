@@ -36,6 +36,10 @@ function getStudentListHTML(studentList) {
 
   for (i = 0; i < studentList.length; i++) {
     let cs = studentList[i];
+    let checkedState = "";
+    if (cs["isPresent"] == "YES") {
+      checkedState = "checked";
+    }
     x =
       x +
       `<div class="studentdetails">
@@ -45,27 +49,13 @@ function getStudentListHTML(studentList) {
             <div class="checkbox-area" data-studentid="${cs["id"]}">
                 <input type="checkbox" class='cbpresent' data-studentid="${
                   cs["id"]
-                }">
+                }" ${checkedState}>
             </div>
         </div>
 
        `;
   }
 
-  // let i = 0;
-  // for (i = 0; i < studentList.length; i++) {
-  //   let cs = studentList[i];
-  //   x += `
-  //           <div class="studentdetails">
-  //               <div class="slno-area">${i + 1}</div>
-  //               <div class="rollno-area">${cs["roll_no"]}</div>
-  //               <div class="name-area">${cs["name"]}</div>
-  //               <div class="checkbox-area">
-  //                   <input type="checkbox">
-  //               </div>
-  //           </div>
-  //         `;
-  // }
   return x;
 }
 function getCourseCardHTML(classlist) {
@@ -119,27 +109,33 @@ function getClassdetailsAreaHTML(classobject) {
     <div class="code-area">${classobject["code"]}</div>
     <div class="title-area">${classobject["title"]}</div>
         <div class="ondate-area">
-          <input type="date" value=${ondate} id='dptondate'>
+          <input type="date" value="${ondate}" id='dptondate'>
         </div>
   </div>
 
           `;
   return x;
 }
-function fetchStudentList(sessionid, classid) {
+function fetchStudentList(sessionid, classid, facid, ondate) {
   $.ajax({
     url: "ajaxhandler/attendanceAJAX.php",
     type: "POST",
     dataType: "json",
-    data: { action: "getStudentList", sessionid: sessionid, classid: classid },
+    data: {
+      action: "getStudentList",
+      facid: facid,
+      ondate: ondate,
+      sessionid: sessionid,
+      classid: classid,
+    },
     beforeSend: function (e) {},
     error: function (e) {
       alert("Error");
     },
     success: function (rv) {
       // alert(JSON.stringify(rv));
-      getStudentListHTML(rv);
-      $("#studentlistarea").html(getStudentListHTML(rv));
+      let x = getStudentListHTML(rv);
+      $("#studentlistarea").html(x);
     },
   });
 }
@@ -156,9 +152,9 @@ function saveAttendance(
   $.ajax({
     url: "ajaxhandler/attendanceAJAX.php",
     type: "POST",
-    
+
     dataType: "json",
-    
+
     data: {
       studentid: studentid,
       courseid: courseid,
@@ -180,7 +176,12 @@ function saveAttendance(
     },
   });
 }
-
+function loadListOnCurrentDate(ondate) {
+  let sessionid = $("#ddlclass").val();
+  let classid = $("#hiddenSelectedCourseID").val();
+  let facid = $("#hiddenFacId").val();
+  fetchStudentList(sessionid, classid, facid, ondate);
+}
 $(function (e) {
   $(document).on("click", "#btnLogοut", function () {
     $.ajax({
@@ -205,6 +206,10 @@ $(function (e) {
   });
   loadSessions();
   $(document).on("change", "#ddlclass", function (e) {
+    $("#classlistarea").html(``);
+    $("#classdetailsarea").html(``);
+    $("#studentlistarea").html(``);
+
     let si = $("#ddlclass").val();
     if (si != -1) {
       let sessionid = si;
@@ -223,9 +228,12 @@ $(function (e) {
     // for session and course
 
     let sessionid = $("#ddlclass").val();
-    let classid = classobject["id"];
+    let classid = $("#hiddenSelectedCourseID").val();
+    let facid = $("#hiddenFacId").val();
+    let ondate = $("#dptondate").val();
+
     if (sessionid != -1) {
-      fetchStudentList(sessionid, classid);
+      fetchStudentList(sessionid, classid, facid, ondate);
     }
   });
   $(document).on("click", ".cbpresent", function (e) {
@@ -254,5 +262,10 @@ $(function (e) {
       ondate,
       ispresent
     );
+  });
+  $(document).on("change", "#dptondate", function (e) {
+    // Load the student list on current date
+    let ondate = $("#dptondate").val();
+    loadListOnCurrentDate(ondate);
   });
 });
