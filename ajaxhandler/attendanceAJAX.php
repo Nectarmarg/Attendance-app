@@ -1,10 +1,24 @@
  <?php
-  $path = $_SERVER['DOCUMENT_ROOT'];
-  require_once $path . '/attendanceapp/database/database.php';
-  require_once $path . '/attendanceapp/database/sessionDetails.php';
-  require_once $path . '/attendanceapp/database/facultyDetails.php';
-  require_once $path . '/attendanceapp/database/courseRegistrationDetails.php';
-  require_once $path . '/attendanceapp/database/attendanceDetails.php';
+  define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']);
+
+  require_once BASE_PATH . '/attendanceapp/database/database.php';
+  require_once BASE_PATH . '/attendanceapp/database/sessionDetails.php';
+  require_once BASE_PATH . '/attendanceapp/database/facultyDetails.php';
+  require_once BASE_PATH . '/attendanceapp/database/courseRegistrationDetails.php';
+  require_once BASE_PATH . '/attendanceapp/database/attendanceDetails.php';
+
+  function createCSVReport($list, $filename)
+  {
+    $finalFileName = BASE_PATH . $filename;
+    try {
+
+      $fp = fopen($finalFileName, "w");
+      foreach ($list as $line) {
+        fputcsv($fp, $line);
+      }
+    } catch (Exception $e) {
+    }
+  }
 
   // getSession - get all the sessions
   if (isset($_POST['action']) && $_POST['action'] === "getSession") {
@@ -73,5 +87,24 @@
     $dbo = new Database();
     $ado = new attendanceDetails();
     $rv = $ado->saveAttendance($dbo, $sessionid, $courseid, $facultyid, $studentid, $ondate, $status);
+    echo json_encode($rv);
+  }
+
+  if (isset($_POST['action']) && $_POST['action'] === 'downloadReport') {
+    $courseid = $_POST['courseid'];
+    $facultyid = $_POST['facultyid'];
+    $sessionid = $_POST['sessionid'];
+    $dbo = new Database();
+    $ado = new attendanceDetails();
+
+    // create a dummy csv
+    $list = [
+      [1, "CSB21001", 20.00],
+      [2, "CSB21002", 30.00],
+      [3, "CSB21003", 50.00]
+    ];
+    $filename = "/attendanceapp/report.csv";
+    $rv = ["filename" => $filename];
+    createCSVReport($list, $filename);
     echo json_encode($rv);
   }

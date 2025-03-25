@@ -55,7 +55,11 @@ function getStudentListHTML(studentList) {
 
        `;
   }
-
+  x += ` <div class="reportsection">
+                <button id='btnReport'>REPORT</button>
+            </div>
+            
+            <div id="btnReport"></div>`;
   return x;
 }
 function getCourseCardHTML(classlist) {
@@ -182,6 +186,31 @@ function loadListOnCurrentDate(ondate) {
   let facid = $("#hiddenFacId").val();
   fetchStudentList(sessionid, classid, facid, ondate);
 }
+function downloadCSV(sessionid, classid, facid) {
+  // make ajax call to fetch from server
+
+  $.ajax({
+    url: "ajaxhandler/attendanceAJAX.php",
+    type: "POST",
+    dataType: "json",
+    data: {
+      action: "downloadReport",
+      facid: facid,
+      sessionid: sessionid,
+      classid: classid,
+    },
+    beforeSend: function (e) {},
+    success: function (rv) {
+      // alert(JSON.stringify(rv));
+
+      let x = `<object data=${rv["filename"]} type="text/html" target="_parent" ></object>`;
+      $("#divReport").html(x);
+    },
+    error: function (e) {
+      alert("Error");
+    },
+  });
+}
 $(function (e) {
   $(document).on("click", "#btnLogοut", function () {
     $.ajax({
@@ -267,5 +296,15 @@ $(function (e) {
     // Load the student list on current date
     let ondate = $("#dptondate").val();
     loadListOnCurrentDate(ondate);
+  });
+  $(document).on("click", "#btnReport", function (e) {
+    // send the session course faculty to server
+    // and get a csv filename in return
+    // server will create the CSV file which will contain
+    // the report
+    let sessionid = $("#ddlclass").val();
+    let classid = $("#hiddenSelectedCourseID").val();
+    let facid = $("#hiddenFacId").val();
+    downloadCSV(sessionid, classid, facid);
   });
 });

@@ -107,9 +107,7 @@ if (isset($_SESSION['current_user'])) {
                     <input type="checkbox">
                 </div>
             </div> -->
-            <div class="reportsection">
-                <button>REPORT</button>
-            </div>
+
         </div>
     </div>
     <input type="hidden" name="" id="hiddenFacId" value="<?php echo $facid ?>">
