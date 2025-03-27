@@ -105,6 +105,7 @@
       [2, "CSB21002", 30.00],
       [3, "CSB21003", 50.00]
     ];
+    $list = $ado->getAttendanceReport($dbo, $sessionid, $courseid, $facultyid);
     $filename = "/attendanceapp/report.csv";
     $rv = ["filename" => $filename];
     createCSVReport($list, $filename);

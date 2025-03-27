@@ -59,7 +59,9 @@ function getStudentListHTML(studentList) {
                 <button id='btnReport'>REPORT</button>
             </div>
             
-            <div id="btnReport"></div>`;
+            <div id="divReport"></div>
+
+            `;
   return x;
 }
 function getCourseCardHTML(classlist) {

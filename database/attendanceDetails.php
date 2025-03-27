@@ -49,4 +49,33 @@ class attendanceDetails
         }
         return $rv;
     }
+    public function getAttendanceReport($dbo, $session, $course, $fac)
+    {
+        // get the total number of classes by the fac
+        $c = "select distinct on_date from attendance_details where session_id=:session_id 
+        and course_id=:course_id 
+        and faculty_id=:faculty_id";
+        $s = $dbo->conn->prepare($c);
+
+        try {
+            $s->execute([":session_id" => $session, ":course_id" => $course, ":faculty_id" => $fac]);
+            $rv = $s->fetchAll(PDO::FETCH_ASSOC);
+            $total = count($rv);
+
+            if ($total > 0) {
+                $start = $rv[0]['on_date'];
+                $end = $rv[$total - 1]['on_date'];
+            }
+        } catch (Exception $e) {
+            return [-1];
+        }
+        $report = [];
+        array_push($report, ['total' => $total]);
+        array_push($report, ['start' => $start]);
+        array_push($report, ['end' => $end]);
+        // get the total number of classes attended by each student
+        // compute the report
+        // return the report
+        return $report;
+    }
 }
