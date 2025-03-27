@@ -91,13 +91,15 @@
   }
 
   if (isset($_POST['action']) && $_POST['action'] === 'downloadReport') {
-    $courseid = $_POST['courseid'];
-    $facultyid = $_POST['facultyid'];
+    $courseid = $_POST['classid'];
+    $facultyid = $_POST['facid'];
     $sessionid = $_POST['sessionid'];
+
     $dbo = new Database();
     $ado = new attendanceDetails();
 
     // create a dummy csv
+    // We need an array of arrays where each array is a row in the csv
     $list = [
       [1, "CSB21001", 20.00],
       [2, "CSB21002", 30.00],

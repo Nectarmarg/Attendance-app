@@ -201,7 +201,7 @@ function downloadCSV(sessionid, classid, facid) {
     },
     beforeSend: function (e) {},
     success: function (rv) {
-      // alert(JSON.stringify(rv));
+      alert(JSON.stringify(rv));
 
       let x = `<object data=${rv["filename"]} type="text/html" target="_parent" ></object>`;
       $("#divReport").html(x);
