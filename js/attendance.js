@@ -37,12 +37,14 @@ function getStudentListHTML(studentList) {
   for (i = 0; i < studentList.length; i++) {
     let cs = studentList[i];
     let checkedState = "";
+    let rowColor = "absentColor";
     if (cs["isPresent"] == "YES") {
       checkedState = "checked";
+      rowColor = "presentColor";
     }
     x =
       x +
-      `<div class="studentdetails">
+      `<div class="studentdetails ${rowColor}" id="student${cs["id"]}">
             <div class="slno-area">${i + 1}</div>
             <div class="rollno-area">${cs["roll_no"]}</div>
             <div class="name-area">${cs["name"]}</div>
@@ -179,6 +181,15 @@ function saveAttendance(
 
     success: function (rv) {
       // alert(JSON.stringify(rv));
+      if (ispresent === "YES") {
+        $("#student" + studentid)
+          .removeClass("absentColor")
+          .addClass("presentColor");
+      }else{
+        $("#student" + studentid)
+          .removeClass("presentColor")
+          .addClass("absentColor");
+      }
     },
   });
 }
